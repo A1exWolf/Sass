@@ -41,37 +41,37 @@
         if (Math.random() > 0.5) {
             fallingObject.classList.add('good');
             const img = document.createElement('img'); // Создаем элемент img
-            const images = ['../../src/assets/img/game_index_pic/berd.png',
-                '../../src/assets/img/game_index_pic/berend.png',
-                '../../src/assets/img/game_index_pic/gusar_2.png',
-                '../../src/assets/img/game_index_pic/gusar_3.png',
-                '../../src/assets/img/game_index_pic/gusar_4.png',
-                '../../src/assets/img/game_index_pic/gusar_5.png',
-                '../../src/assets/img/game_index_pic/kaft_1.png',
-                '../../src/assets/img/game_index_pic/kaft_2.png',
-                '../../src/assets/img/game_index_pic/kaft_5.png',
-                '../../src/assets/img/game_index_pic/kaft_3.png',
-                '../../src/assets/img/game_index_pic/kaft_4.png',
-                '../../src/assets/img/game_index_pic/karasir_2.png',
-                '../../src/assets/img/game_index_pic/karasir_3.png',
-                '../../src/assets/img/game_index_pic/petr_2.png',
-                '../../src/assets/img/game_index_pic/petr_3.png',
-                '../../src/assets/img/game_index_pic/petr_4.png',
-                '../../src/assets/img/game_index_pic/sapogi_1.png',
-                '../../src/assets/img/game_index_pic/shapka.png',
-                '../../src/assets/img/game_index_pic/karasir_4.png',]; // пути к хорошим изображениям
+            const images = ['../game_index_pic/berd.png',
+                '../game_index_pic/berend.png',
+                '../game_index_pic/gusar_2.png',
+                '../game_index_pic/gusar_3.png',
+                '../game_index_pic/gusar_4.png',
+                '../game_index_pic/gusar_5.png',
+                '../game_index_pic/kaft_1.png',
+                '../game_index_pic/kaft_2.png',
+                '../game_index_pic/kaft_5.png',
+                '../game_index_pic/kaft_3.png',
+                '../game_index_pic/kaft_4.png',
+                '../game_index_pic/karasir_2.png',
+                '../game_index_pic/karasir_3.png',
+                '../game_index_pic/petr_2.png',
+                '../game_index_pic/petr_3.png',
+                '../game_index_pic/petr_4.png',
+                '../game_index_pic/sapogi_1.png',
+                '../game_index_pic/shapka.png',
+                '../game_index_pic/karasir_4.png',]; // пути к хорошим изображениям
             img.src = images[Math.floor(Math.random() * images.length)]; // Выбираем случайное изображение
             img.classList.add('good-image'); // Можно добавить класс для стилей, если необходимо
             fallingObject.appendChild(img); // Добавляем изображение в div
         } else {
             fallingObject.classList.add('bad'); // Если объект "плохой", оставляем как есть
             const badI = document.createElement('img');
-            const badImages = ['../../src/assets/img/game_index_pic/Counter-Strike-PNG-Photo.png',
-                '../../src/assets/img/game_index_pic/Dota-PNG-Pic.png',
-                '../../src/assets/img/game_index_pic/Graphics-Card-Transparent-Image.png',
-                '../../src/assets/img/game_index_pic/Isuzu-Closeup-PNG.png',
-                '../../src/assets/img/game_index_pic/Phone-Transparent-Background-PNG.png',
-                '../../src/assets/img/game_index_pic/Home-Theater-System-Living-PNG.png',];
+            const badImages = ['../game_index_pic/Counter-Strike-PNG-Photo.png',
+                '../game_index_pic/Dota-PNG-Pic.png',
+                '../game_index_pic/Graphics-Card-Transparent-Image.png',
+                '../game_index_pic/Isuzu-Closeup-PNG.png',
+                '../game_index_pic/Phone-Transparent-Background-PNG.png',
+                '../game_index_pic/Home-Theater-System-Living-PNG.png',];
             badI.src = badImages[Math.floor(Math.random() * badImages.length)];
             badI.classList.add('bad');
             fallingObject.appendChild(badI);
