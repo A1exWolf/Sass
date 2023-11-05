@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link rel="stylesheet" type="text/css" href="style_lovi.css">
+    <title>History Game</title>
+</head>
+
+<body>
+<div id="score">Ваш счет: 0</div>
+<div id="game-over">Игра окончена</div>
+<div id="game-over-score"></div>
+<button id="restart-btn" style="display: block;">Начать сначала</button>
+<script>
+    let score = 0;
+    let gameEnded = false;
+    const scoreElement = document.getElementById('score');
+    const gameOverElement = document.getElementById('game-over');
+    const gameOverScoreElement = document.getElementById('game-over-score');
+    const restartButton = document.getElementById('restart-btn');
+    const gameArea = document.documentElement;
+    let gameInterval;
+    let speed = 2;
+
+    function updateScore() {
+        score++;
+        scoreElement.textContent = "Ваш счет: " + score;
+        if (score % 10 === 0) {
+            speed += 1;
+        }
+    }
+
+
+    function createFallingObject() {
+        if (gameEnded) return;
+        const fallingObject = document.createElement('div'); // Оставляем создание div элемента
+        fallingObject.classList.add('falling-object');
+
+        // Если объект "хороший", то добавляем изображение
+        if (Math.random() > 0.5) {
+            fallingObject.classList.add('good');
+            const img = document.createElement('img'); // Создаем элемент img
+            const images = ['../../src/assets/img/game_index_pic/berd.png',
+                '../../src/assets/img/game_index_pic/berend.png',
+                '../../src/assets/img/game_index_pic/gusar_2.png',
+                '../../src/assets/img/game_index_pic/gusar_3.png',
+                '../../src/assets/img/game_index_pic/gusar_4.png',
+                '../../src/assets/img/game_index_pic/gusar_5.png',
+                '../../src/assets/img/game_index_pic/kaft_1.png',
+                '../../src/assets/img/game_index_pic/kaft_2.png',
+                '../../src/assets/img/game_index_pic/kaft_5.png',
+                '../../src/assets/img/game_index_pic/kaft_3.png',
+                '../../src/assets/img/game_index_pic/kaft_4.png',
+                '../../src/assets/img/game_index_pic/karasir_2.png',
+                '../../src/assets/img/game_index_pic/karasir_3.png',
+                '../../src/assets/img/game_index_pic/petr_2.png',
+                '../../src/assets/img/game_index_pic/petr_3.png',
+                '../../src/assets/img/game_index_pic/petr_4.png',
+                '../../src/assets/img/game_index_pic/sapogi_1.png',
+                '../../src/assets/img/game_index_pic/shapka.png',
+                '../../src/assets/img/game_index_pic/karasir_4.png',]; // пути к хорошим изображениям
+            img.src = images[Math.floor(Math.random() * images.length)]; // Выбираем случайное изображение
+            img.classList.add('good-image'); // Можно добавить класс для стилей, если необходимо
+            fallingObject.appendChild(img); // Добавляем изображение в div
+        } else {
+            fallingObject.classList.add('bad'); // Если объект "плохой", оставляем как есть
+            const badI = document.createElement('img');
+            const badImages = ['../../src/assets/img/game_index_pic/Counter-Strike-PNG-Photo.png',
+                '../../src/assets/img/game_index_pic/Dota-PNG-Pic.png',
+                '../../src/assets/img/game_index_pic/Graphics-Card-Transparent-Image.png',
+                '../../src/assets/img/game_index_pic/Isuzu-Closeup-PNG.png',
+                '../../src/assets/img/game_index_pic/Phone-Transparent-Background-PNG.png',
+                '../../src/assets/img/game_index_pic/Home-Theater-System-Living-PNG.png',];
+            badI.src = badImages[Math.floor(Math.random() * badImages.length)];
+            badI.classList.add('bad');
+            fallingObject.appendChild(badI);
+        }
+
+        fallingObject.style.left = Math.random() * (gameArea.clientWidth - 50) + 'px';
+        document.body.appendChild(fallingObject);
+        animateFallingObject(fallingObject);
+    }
+
+    function animateFallingObject(element) {
+        if (gameEnded) return;
+        const animation = setInterval(function () {
+            let currentPosition = element.offsetTop;
+            if (currentPosition > gameArea.clientHeight) {
+                clearInterval(animation);
+                document.body.removeChild(element);
+                if (element.classList.contains('good')) {
+                    endGame();
+                }
+            } else {
+                element.style.top = currentPosition + speed + 'px';
+            }
+        }, 20);
+
+        element.addEventListener('click', function () {
+            clearInterval(animation);
+            document.body.removeChild(element);
+            if (element.classList.contains('bad')) {
+                endGame();
+            } else {
+                updateScore();
+            }
+        });
+    }
+
+    function startGame() {
+        gameEnded = false;
+        score = 0;
+        speed = 2;
+        scoreElement.textContent = "Ваш счет: 0";
+        gameOverElement.style.display = 'none';
+        gameOverScoreElement.style.display = 'none';
+        restartButton.style.display = 'none';
+        gameInterval = setInterval(createFallingObject, 2000);
+    }
+
+    function endGame() {
+        clearInterval(gameInterval);
+        gameOverElement.style.display = 'block';
+        gameOverScoreElement.innerHTML = "Ваш счет: " + score;
+        gameOverScoreElement.style.display = 'block';
+        restartButton.style.display = 'block';
+        const fallingObjects = document.getElementsByClassName('falling-object');
+        while (fallingObjects[0]) {
+            fallingObjects[0].parentNode.removeChild(fallingObjects[0]);
+        }
+        gameEnded = true;
+    }
+
+    restartButton.addEventListener('click', startGame);
+</script>
+</body>
+
+</html>

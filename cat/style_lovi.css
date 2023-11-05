@@ -1,0 +1,106 @@
+html, body {
+    overflow-x:hidden !important; 
+     overflow-y:hidden !important;   
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(to right, #B0E0E6, #ADD8E6, #87CEEB,#00BFFF);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+
+.falling-object {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.bad {
+    /*background-color: red; !* Пример стиля для плохих объектов *!*/
+    max-width: 90px; /* Пример стилей для изображений хороших объектов */
+    max-height: 90px;
+}
+
+.good-image {
+    max-width: 90px; /* Пример стилей для изображений хороших объектов */
+    max-height: 90px;
+    /* другие стили */
+}
+
+.falling-object {
+    position: absolute;
+    cursor: pointer;
+    /* Общие стили для всех падающих объектов */
+}
+
+
+
+
+.good {
+    /*background-color: green;*/
+}
+/*.bad {*/
+/*    background-color: red;*/
+/*}*/
+
+#score {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+#game-over, #game-over-score {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3em;
+    display: none;
+}
+#game-over-score {
+    top: 55%;
+    font-size: 2em;
+}
+#restart-btn {
+    z-index: 1001;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    padding: 10px 20px;
+    font-size: 1.5em;
+    color: white;
+    background-color: rgba(52, 152, 219, 0.5); /* полупрозрачный синий */
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    cursor: pointer;
+    outline: none;
+    transition: all 0.5s;
+    -webkit-backdrop-filter: blur(11.5px);
+    backdrop-filter: blur(11.5px);
+}
+
+#restart-btn:hover {
+    background-color: #2980b9;
+}
+
+
+#restart-btn:active {
+    background-color: #3498db;
+    box-shadow: 0 5px #2980b9;
+    transform: translateY(4px);
+}
+
+@media (max-width: 647px) {
+    #game-over, #game-over-score {
+        font-size: 2em;
+    }
+    #game-over-score {
+        top: 60%;
+        font-size: 1.5em;
+    }
+}
